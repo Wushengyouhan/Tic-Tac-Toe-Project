@@ -1,5 +1,22 @@
 function App() {
-  return <p>working...</p>;
+  return (
+    <main>
+      <div id="game-container">
+        <ol id="players">
+          <li>
+            <span className="player">Player1 </span>
+            <span className="player-symbol">X</span>
+          </li>
+          <li>
+            <span className="player">Player2 </span>
+            <span className="player-symbol">O</span>
+          </li>
+        </ol>
+        GAME BOARD
+      </div>
+      LOG
+    </main>
+  );
 }
 
 export default App;
