@@ -22,8 +22,8 @@ function deriveActivePlayer(gameTurns) {
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
-
-  let gameBoard = initialGameBoard;
+  //这里要给副本，不然会直接修改intialGameBoard
+  let gameBoard = [...initialGameBoard.map((array) => [...array])];
   //这个是先渲染最新的，然后旧的
   //所以一个位置下过了棋子，之后再下，就没有用了，因为最后才渲染最早的那次操作
   for (const turn of gameTurns) {
@@ -64,6 +64,10 @@ function App() {
       return updatedTurns;
     });
   }
+
+  function handleRestart() {
+    setGameTurns([]);
+  }
   return (
     <main>
       <div id="game-container">
@@ -79,7 +83,9 @@ function App() {
             isActive={activePlayer === "O"}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} />}
+        {(winner || hasDraw) && (
+          <GameOver winner={winner} onRestart={handleRestart} />
+        )}
         <GameBoard onSelectSquare={hanleSelectSquare} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
