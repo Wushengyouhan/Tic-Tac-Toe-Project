@@ -21,6 +21,10 @@ function deriveActivePlayer(gameTurns) {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
+  const [players, setPlayers] = useState({
+    X: "player 1",
+    O: "player 2",
+  });
   const activePlayer = deriveActivePlayer(gameTurns);
   //这里要给副本，不然会直接修改intialGameBoard
   let gameBoard = [...initialGameBoard.map((array) => [...array])];
@@ -67,6 +71,15 @@ function App() {
 
   function handleRestart() {
     setGameTurns([]);
+  }
+
+  function handlePlayerNameChange(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName,
+      };
+    });
   }
   return (
     <main>
