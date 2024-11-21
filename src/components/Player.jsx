@@ -1,12 +1,24 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
   // console.log("Player component rendered");
 
   function handleEditClick() {
+    // console.log("此时isEditing的值是", isEditing);
     setIsEditing((editing) => !editing);
+    // console.log("更改状态的下一行", isEditing);
+
+    //这个是你点按钮的时候的状态，而不是点了改变后的
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
