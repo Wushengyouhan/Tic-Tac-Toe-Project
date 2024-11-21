@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Player({ initialName, symbol, isActive }) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
-  console.log("Player component rendered");
+  // console.log("Player component rendered");
 
   function handleEditClick() {
     setIsEditing((editing) => !editing);
